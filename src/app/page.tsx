@@ -4,6 +4,8 @@ import Hero from '../components/Hero';
 import Services from '@/components/Services';
 import TrackOrderSection from '@/components/TrackOrderSection';
 import VideoSection from '@/components/VideoSection';
+import Testimonials from '@/components/Testimonials';
+
 
 
 
@@ -16,6 +18,7 @@ export default function Page() {
       <Services/>
       <TrackOrderSection/>
       <VideoSection/>
+      <Testimonials/>
     </div>
   )
 }
