@@ -13,6 +13,7 @@ import {
   Geist_Mono,
   Martel_Sans,
 } from "next/font/google";
+import Footer from "@/components/Footer";
 
 
 const raleway = Raleway({
@@ -82,6 +83,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <Footer/>
       </body>
     </html>
   );
