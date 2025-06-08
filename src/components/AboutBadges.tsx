@@ -28,8 +28,8 @@ export default function AboutBadges() {
 
             {badges.map((badge, index) => (
                 <div key={index} className=" w-full max-w-[370px] flex items-start  justify-start gap-3 p-1 " >
-                    <Image src={badge.img} alt="icon" width={20} height={20} className="w-6 h-6  md:w-12 md:h-12 " />
-                    <h5 className="text-[#3F4255] text-xs md:text-base font-light " >{badge.desc} </h5>
+                    <Image src={badge.img} alt="icon" width={20} height={20} className="w-6 h-6  lg:w-12 lg:h-12 " />
+                    <h5 className="text-[#3F4255] text-xs md:text-sm lg:text-base font-light " >{badge.desc} </h5>
 
                 </div>
 
