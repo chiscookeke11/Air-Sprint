@@ -42,9 +42,8 @@ export default function VideoSection() {
 
 
       <div
-        className={`overlay absolute top-0 left-0 w-full bg-[#0A090DCC] flex items-center justify-center flex-col gap-5 transition-all duration-300 ease-in-out ${
-          playMode ? "h-0" : "h-full"
-        }`}
+        className={`overlay absolute top-0 left-0 w-full bg-[#0A090DCC] flex items-center justify-center flex-col overflow-hidden gap-5 transition-all duration-300 ease-in-out ${playMode ? "h-0" : "h-full"
+          }`}
       >
         <Button
           onClick={togglePlayBack}

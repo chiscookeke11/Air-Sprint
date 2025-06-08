@@ -35,6 +35,7 @@ export default function Testimonials() {
             focus: "center",
             gap: "1rem",
             arrows: false,
+            pagination: false,
             breakpoints: {
               1024: {
                 perPage: 2,

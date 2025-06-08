@@ -1,4 +1,5 @@
 import { TestimonialProp } from "@/types/TestimonialCardType";
+import { Box, Rating } from "@mui/material";
 import Image from "next/image";
 
 
@@ -27,7 +28,24 @@ export default function TestimonialCard({ testimonial }: CardProp) {
 
             <div className=" w-full flex flex-col md:flex-row items-end md:items-center justify-between " >
 
-stars here
+                <Box
+                    component="fieldset"
+                    borderColor="transparent"
+                    className="mb-2"
+                >
+                    <Rating
+                        name={`rating-${testimonial.user}`}
+                        value={testimonial.rating}
+                        precision={0.5}
+                        readOnly
+                        size="small"
+                        sx={{
+                            '& .MuiRating-iconFilled': {
+                                color: '#2F80ED',
+                            },
+                        }}
+                    />
+                </Box>
 
 
 
@@ -37,7 +55,7 @@ stars here
                         <h5 className="font-bold" > {testimonial.user} </h5>
                         <h6 className="font-normal" > {testimonial.userPosition} </h6>
                     </div>
-                    <Image src={testimonial.userImg} alt="user-img" width={100} height={100} className="rounded-full w-[53px] h-[53px] object-cover object-center " />
+                    <Image src={testimonial.userImg} alt="user-img" width={100} height={100} className="rounded-full w-[35px] h-[35px] lg:w-[53px] lg:h-[53px] object-cover object-center " />
                 </div>
             </div>
 

@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { Menu, XIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { useUser, UserButton } from "@civic/auth/react";
 
 
 
@@ -45,6 +46,9 @@ export default function Navbar() {
     const mobileNavRef = useRef<HTMLDivElement>(null);
 
 
+    const { signIn, signOut, user, isLoading } = useUser()
+
+
 
 
     useEffect(() => {
@@ -78,6 +82,8 @@ export default function Navbar() {
 
 
 
+
+
     return (
         <nav className="mt-[2%] mx-auto w-full max-w-[98%] bg-[#FFFFFFB2] shadow-[0px_0px_20px_0px_#0000000D] py-3 px-[4%] flex items-center justify-between gap-5  " >
 
@@ -91,11 +97,13 @@ export default function Navbar() {
                 ))}
             </ul>
 
+            {user?.email}
+
 
 
 
             <div className="w-fit flex items-center gap-2  " >
-                <Button variant={"default"} className="  py-3 px-4 rounded-lg cursor-pointer text-xs md:text-sm font-bold text-[#FFFFFF] font-nunito    " > Login | Register  </Button>
+                <Button onClick={() => user ? signOut() : signIn()} variant={"default"} className="  py-3 px-4 rounded-lg cursor-pointer text-xs md:text-sm font-bold text-[#FFFFFF] font-nunito    " >  {user ? "Log out" : "Log in "}  </Button>
                 <Button onClick={() => setShowMobileNav(true)} variant={"secondary"} className=" block lg:hidden "  > <Menu /> </Button>
             </div>
 

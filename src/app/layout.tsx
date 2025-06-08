@@ -14,6 +14,7 @@ import {
   Martel_Sans,
 } from "next/font/google";
 import Footer from "@/components/Footer";
+import { CivicAuthProvider } from "@civic/auth/nextjs";
 
 
 const raleway = Raleway({
@@ -81,9 +82,11 @@ export default function RootLayout({
           antialiased
         `}
       >
+        <CivicAuthProvider>
         <Navbar />
         {children}
         <Footer/>
+        </CivicAuthProvider>
       </body>
     </html>
   );
