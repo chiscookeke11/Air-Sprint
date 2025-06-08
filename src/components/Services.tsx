@@ -37,7 +37,7 @@ export default function Services() {
             </div>
 
 
-            <div className="w-full flex flex-col md:flex-col items-stretch justify-between gap-7 " >
+            <div className="w-full flex flex-col md:flex-row items-stretch justify-between gap-7 " >
 
 
                 {servicesDetails.map((card, index) => (
