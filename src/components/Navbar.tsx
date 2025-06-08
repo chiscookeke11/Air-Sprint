@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { Menu, XIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { useUser, UserButton } from "@civic/auth/react";
+import { useUser } from "@civic/auth/react";
 
 
 
@@ -46,7 +46,7 @@ export default function Navbar() {
     const mobileNavRef = useRef<HTMLDivElement>(null);
 
 
-    const { signIn, signOut, user, isLoading } = useUser()
+    const { signIn, signOut, user } = useUser()
 
 
 
