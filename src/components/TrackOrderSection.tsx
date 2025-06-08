@@ -29,7 +29,7 @@ export default function TrackOrderSection() {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         type="text"
-                        className="flex-1 border-none outline-none text-sm md:text-base text-[#9093A6] font-light "
+                        className="w-full border-none outline-none text-sm md:text-base text-[#9093A6] font-light "
                         placeholder="Enter your tracking ID" />
                 </label>
                 <Button onClick={() => alert(inputValue)} variant={"default"} className="px-6 py-6 md:py-[28px] rounded-sm cursor-pointer "  >send </Button>

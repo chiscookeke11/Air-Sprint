@@ -100,7 +100,7 @@ export default function Navbar() {
             </div>
 
 
-            <div ref={mobileNavRef} className={`w-1/2 min-w-[320px] h-screen bg-[#FFFFFF] fixed top-0 right-0 flex flex-col items-start transform duration-200 transition-all px-8 py-8 z-50  ${showMobileNav ? "translate-x-0" : "translate-x-[100%] "} `}  >
+            <div ref={mobileNavRef} className={`w-1/2 min-w-[320px] h-screen font-poppins bg-[#FFFFFF] fixed top-0 right-0 flex flex-col items-start transform duration-200 transition-all px-8 py-8 z-50  ${showMobileNav ? "translate-x-0" : "translate-x-[100%] "} `}  >
                 <Button onClick={() => setShowMobileNav(false)} variant={"secondary"} className=" block lg:hidden ml-auto  "  > <XIcon /> </Button>
 
 
