@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { Toaster } from 'react-hot-toast';
 
 
 import {
@@ -83,9 +84,10 @@ export default function RootLayout({
         `}
       >
         <CivicAuthProvider>
-        <Navbar />
-        {children}
-        <Footer/>
+          <Navbar />
+          {children}
+          <Toaster position="bottom-right" reverseOrder={false}   />
+          <Footer />
         </CivicAuthProvider>
       </body>
     </html>

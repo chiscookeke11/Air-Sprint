@@ -4,6 +4,8 @@
 import { MapPin } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
+import { useUser } from "@civic/auth/react";
+import toast from "react-hot-toast";
 
 
 
@@ -11,6 +13,38 @@ import { useState } from "react";
 
 export default function TrackOrderSection() {
     const [inputValue, setInputValue] = useState("")
+
+
+    const {user} = useUser()
+
+
+    const trackItem = () => {
+  const trimmedInput = inputValue.trim();
+
+  if (!user) {
+    toast.error("Please log in to track your package");
+    return;
+  }
+
+  if (trimmedInput.length === 0) {
+    toast("Please enter your tracking ID", {
+      icon: 'ℹ️',
+      style: {
+        background: '#3B82F6',
+        color: '#fff',
+      },
+    });
+    return;
+  }
+
+  if (trimmedInput.length !== 7) {
+    toast.error("Tracking ID must be exactly 7 characters");
+    return;
+  }
+
+  toast.success("Tracking your package...");
+};
+
 
 
     return (
@@ -29,10 +63,11 @@ export default function TrackOrderSection() {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         type="text"
+                        maxLength={10}
                         className="w-full border-none outline-none text-sm md:text-base text-[#9093A6] font-light "
                         placeholder="Enter your tracking ID" />
                 </label>
-                <Button onClick={() => alert(inputValue)} variant={"default"} className="px-6 py-6 md:py-[28px] rounded-sm cursor-pointer "  >send </Button>
+                <Button onClick={trackItem} variant={"default"} className="px-6 py-6 md:py-[28px] rounded-sm cursor-pointer "  >send </Button>
             </div>
         </div>
     )
