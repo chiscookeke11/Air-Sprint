@@ -14,10 +14,10 @@ export default function TrackOrderSection() {
 
 
     return (
-        <div className="w-full max-w-[90%] mx-auto bg-[#FFFFFF] p-12 pl-[8%]  shadow-[0px_0px_20px_5px_#3F3D560D] flex items-center justify-between gap-6 font-poppins ">
-            <div className="w-full max-w-[509px] space-y-6 " >
-                <h1 className="text-[#3F4255] font-bold text-4xl  " >Track your Order </h1>
-                <p className=" max-w-[424.2px] text-base font-medium text-[#3F4255] " >Track your order with its own delivery area to deliver  you as soon as possible</p>
+        <div className="w-full max-w-[90%] mx-auto bg-[#FFFFFF] py-12 px-5 md:p-12 md:pl-[8%]  shadow-[0px_0px_20px_5px_#3F3D560D] flex flex-col md:flex-row items-center justify-between gap-6 font-poppins ">
+            <div className="w-full max-w-[509px] space-y-3 md:space-y-6 " >
+                <h1 className="text-[#3F4255] font-bold text-2xl md:text-4xl  " >Track your Order </h1>
+                <p className=" max-w-[424.2px] text-sm md:text-base font-medium text-[#3F4255] " >Track your order with its own delivery area to deliver  you as soon as possible</p>
 
             </div>
 
@@ -29,10 +29,10 @@ export default function TrackOrderSection() {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         type="text"
-                        className="flex-1 border-none outline-none  text-base text-[#9093A6] font-light "
+                        className="flex-1 border-none outline-none text-sm md:text-base text-[#9093A6] font-light "
                         placeholder="Enter your tracking ID" />
                 </label>
-                <Button onClick={() => alert(inputValue)} variant={"default"} className="px-6 py-[28px] rounded-sm cursor-pointer "  >send </Button>
+                <Button onClick={() => alert(inputValue)} variant={"default"} className="px-6 py-6 md:py-[28px] rounded-sm cursor-pointer "  >send </Button>
             </div>
         </div>
     )
