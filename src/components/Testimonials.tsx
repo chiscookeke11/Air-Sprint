@@ -34,6 +34,9 @@ export default function Testimonials() {
             perPage: 3,
             focus: "center",
             gap: "1rem",
+            autoplay: true,
+            interval: 3000,
+            pauseOnHover: true,
             arrows: false,
             pagination: false,
             breakpoints: {
