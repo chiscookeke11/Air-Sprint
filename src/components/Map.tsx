@@ -19,7 +19,7 @@ interface MapProps {
 export default function Map({destination_lat, destination_lng, current_lat, current_lng}: MapProps) {
     const mapContainer = useRef<HTMLDivElement | null>(null);
     const map = useRef<maptilersdk.Map | null>(null);
-    const location = { lng: current_lng, lat: current_lng };
+    const location = { lng: current_lng, lat: current_lat };
     const zoom = 14;
 
     maptilersdk.config.apiKey = process.env.NEXT_PUBLIC_MAP_API_KEY || "";
@@ -52,7 +52,7 @@ export default function Map({destination_lat, destination_lng, current_lat, curr
 
 
 
-    }, []);
+    }, [destination_lat, destination_lng, location.lat, location.lng]);
 
 
 

@@ -8,7 +8,6 @@ import { Menu, XIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useUser } from "@civic/auth/react";
 import toast from "react-hot-toast";
-import { usePackageContext } from "./context/PackageContext";
 
 
 

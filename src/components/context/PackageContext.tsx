@@ -4,7 +4,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { PackageDataProp } from "@/types/packageData"
 import { useUser } from "@civic/auth/react";
 import { useRouter } from "next/navigation";
-import React, { createContext, SetStateAction, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import toast from "react-hot-toast";
 
 
@@ -26,7 +26,7 @@ const PackageContext = createContext<PackageContextType | undefined>(undefined);
 
 export const PackageProvider = ({ children }: { children: React.ReactNode }) => {
     const [deliveryData, setDeliveryData] = useState<PackageDataProp[]>([])
-    const [loading, setLoading] = useState(true);
+    const [loading] = useState(true);
     const [inputValue, setInputValue] = useState<string>("")
     const { user } = useUser()
     const router = useRouter()
@@ -109,13 +109,14 @@ export const PackageProvider = ({ children }: { children: React.ReactNode }) => 
             toast.dismiss(loadingToast)
         }
 
-        catch (error: any) {
+        catch (err: unknown) {
+            toast.dismiss(loadingToast);
+            console.error("Unexpected error during package tracking:", err);
 
-
-            toast.dismiss(loadingToast)
-            console.error("Unexpected error during package tracking:", error)
-            toast.error(`An unexpected error occurred: ${error.message}`)
+            const errorMessage = err instanceof Error ? err.message : "Unknown error occurred";
+            toast.error(`An unexpected error occurred: ${errorMessage}`);
         }
+
 
 
         setInputValue("")
