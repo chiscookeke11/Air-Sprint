@@ -16,6 +16,7 @@ import {
 } from "next/font/google";
 import Footer from "@/components/Footer";
 import { CivicAuthProvider } from "@civic/auth/nextjs";
+import { PackageProvider } from "@/components/context/PackageContext";
 
 
 const raleway = Raleway({
@@ -83,12 +84,16 @@ export default function RootLayout({
           antialiased
         `}
       >
+
         <CivicAuthProvider>
-          <Navbar />
-          {children}
-          <Toaster position="bottom-right" reverseOrder={false}   />
-          <Footer />
+          <PackageProvider>
+            <Navbar />
+            {children}
+            <Toaster position="bottom-right" reverseOrder={false} />
+            <Footer />
+          </PackageProvider>
         </CivicAuthProvider>
+
       </body>
     </html>
   );

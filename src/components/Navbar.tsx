@@ -7,6 +7,8 @@ import Link from "next/link";
 import { Menu, XIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useUser } from "@civic/auth/react";
+import toast from "react-hot-toast";
+import { usePackageContext } from "./context/PackageContext";
 
 
 
@@ -17,8 +19,8 @@ const navLinks = [
         path: "/",
     },
     {
-        label: "Truck Order ",
-        path: "/",
+        label: "Track Package ",
+        path: `/track`,
     },
     {
         label: "Pricing ",
@@ -47,6 +49,9 @@ export default function Navbar() {
 
 
     const { signIn, signOut, user } = useUser()
+
+
+
 
 
 
@@ -97,13 +102,20 @@ export default function Navbar() {
                 ))}
             </ul>
 
-            {user?.email}
-
-
 
 
             <div className="w-fit flex items-center gap-2  " >
-                <Button onClick={() => user ? signOut() : signIn()} variant={"default"} className="  py-3 px-4 rounded-lg cursor-pointer text-xs md:text-sm font-bold text-[#FFFFFF] font-nunito    " >  {user ? "Log out" : "Log in "}  </Button>
+                <Button
+                    onClick={() => {
+                        if (user) {
+                            signOut();
+                            toast.success("Sign out successful !")
+                        } else {
+                            signIn();
+                        }
+                    }}
+
+                    variant={"default"} className="  py-3 px-4 rounded-lg cursor-pointer text-xs md:text-sm font-bold text-[#FFFFFF] font-nunito    " >  {user ? "Log out" : "Log in "}  </Button>
                 <Button onClick={() => setShowMobileNav(true)} variant={"secondary"} className=" block lg:hidden "  > <Menu /> </Button>
             </div>
 

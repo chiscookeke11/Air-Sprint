@@ -5,10 +5,21 @@ import * as maptilersdk from '@maptiler/sdk';
 import '@maptiler/sdk/dist/maptiler-sdk.css';
 import './map.css';
 
-export default function Map() {
+
+
+interface MapProps {
+    destination_lng: number;
+    destination_lat: number;
+    current_lat: number;
+    current_lng: number;
+}
+
+
+
+export default function Map({destination_lat, destination_lng, current_lat, current_lng}: MapProps) {
     const mapContainer = useRef<HTMLDivElement | null>(null);
     const map = useRef<maptilersdk.Map | null>(null);
-    const location = { lng: 7.3958, lat: 6.8570 };
+    const location = { lng: current_lng, lat: current_lng };
     const zoom = 14;
 
     maptilersdk.config.apiKey = process.env.NEXT_PUBLIC_MAP_API_KEY || "";
@@ -30,7 +41,7 @@ export default function Map() {
             .addTo(map.current);
 
         // Marker 2: Recipient
-        const recipientLocation = { lng: 7.4100, lat: 6.8700 };
+        const recipientLocation = { lng: destination_lng, lat: destination_lat };
         new maptilersdk.Marker({ color: '#0000FF' }) // Blue
             .setLngLat([recipientLocation.lng, recipientLocation.lat])
             .setPopup(new maptilersdk.Popup().setText("Recipient Location"))
