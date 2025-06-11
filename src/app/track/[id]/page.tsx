@@ -58,8 +58,84 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
   if (loading) return <p className="p-6">Loading package info...</p>;
   if (!currentPackage) return notFound();
 
+
+
+
+  const packageDetails = [
+    {
+      label: "Pacakge tracking ID:",
+      value: currentPackage.tracking_id,
+    },
+    {
+      label: "REgsiterred on: ",
+      value: new Date(currentPackage.created_at).toLocaleDateString(),
+    },
+    {
+      label: "Status ",
+      value: currentPackage.status,
+    },
+    {
+      label: "Recepient Name ",
+      value: currentPackage.recipient_name,
+    },
+    {
+      label: "Recepient Address ",
+      value: currentPackage.recipient_address,
+    },
+    {
+      label: "Recepient Email ",
+      value: currentPackage.recipient_email,
+    },
+    {
+      label: "Recepient Phone number ",
+      value: currentPackage.recipient_number,
+    },
+    {
+      label: "Sender Name ",
+      value: currentPackage.sender_name,
+    },
+    {
+      label: "Sender Email ",
+      value: currentPackage.sender_email,
+    },
+    {
+      label: "Sender Phone number ",
+      value: currentPackage.sender_number,
+    }
+  ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const InfoRow = ({ label, value }: { label: string; value: string }) => (
+    <div className="w-full  flex items-center gap-10 justify-between  ">
+      <p className="font-semibold font-oxanium text-base md:text-lg ">{label}</p>
+      <p className=" font-raleway text-sm md:text-base " >{value}</p>
+    </div>
+  );
+
+
+
+
+
   return (
-    <div className="w-full min-h-screen flex items-center justify-center flex-col space-y-6 p-4">
+    <div className="w-full h-fit flex  items-center  flex-col gap-8 md:gap-16 p-4">
       <div className="flex gap-[2px] items-stretch w-full max-w-[380px] font-martel">
         <label className="bg-[#ffffff] shadow-[0px_8px_40px_0px_#00000014] w-full max-w-[336px] rounded-[6px] flex items-center gap-2 justify-center px-2">
           <MapPin size={20} color="#C4C4C4" />
@@ -77,7 +153,17 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
         </Button>
       </div>
 
-      <div className="w-full max-w-4xl h-[500px]">
+
+
+      <div className="w-full flex flex-col gap-4 max-w-md bg-white p-2 shadow-inner rounded-lg " >
+        {packageDetails.map((detail, index) => (
+          <InfoRow key={index} label={detail.label} value={detail.value} />
+        ))}
+      </div>
+
+
+
+      <div className="w-full h-full max-w-4xl">
         <Map
           destination_lat={currentPackage.destination_lat}
           destination_lng={currentPackage.destination_lng}

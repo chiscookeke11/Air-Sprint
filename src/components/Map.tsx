@@ -29,7 +29,7 @@ export default function Map({destination_lat, destination_lng, current_lat, curr
 
         map.current = new maptilersdk.Map({
             container: mapContainer.current,
-            style: maptilersdk.MapStyle.STREETS,
+            style: maptilersdk.MapStyle.HYBRID,
             center: [location.lng, location.lat],
             zoom: zoom,
         });
