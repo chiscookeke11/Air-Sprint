@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Menu, XIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useUser } from "@civic/auth/react";
-import toast from "react-hot-toast";
+import ProfileDropdown from "./ProfileDropdown";
 
 
 
@@ -20,10 +20,6 @@ const navLinks = [
     {
         label: "Track Package ",
         path: `/track`,
-    },
-    {
-        label: "Pricing ",
-        path: "/",
     },
     {
         label: "About ",
@@ -47,7 +43,7 @@ export default function Navbar() {
     const mobileNavRef = useRef<HTMLDivElement>(null);
 
 
-    const { signIn, signOut, user } = useUser()
+    const { signIn, user } = useUser()
 
 
 
@@ -104,17 +100,15 @@ export default function Navbar() {
 
 
             <div className="w-fit flex items-center gap-2  " >
-                <Button
-                    onClick={() => {
-                        if (user) {
-                            signOut();
-                            toast.success("Sign out successful !")
-                        } else {
-                            signIn();
-                        }
-                    }}
 
-                    variant={"default"} className="  py-3 px-4 rounded-lg cursor-pointer text-xs md:text-sm font-bold text-[#FFFFFF] font-nunito    " >  {user ? "Log out" : "Log in "}  </Button>
+
+                {user ? (<ProfileDropdown />) : (
+                    <Button
+                        onClick={() => { signIn() }}
+
+                        variant={"default"}
+                        className="  py-3 px-4 rounded-lg cursor-pointer text-xs md:text-sm font-bold text-[#FFFFFF] font-nunito    " >  Log in  </Button>
+                )}
                 <Button onClick={() => setShowMobileNav(true)} variant={"secondary"} className=" block lg:hidden "  > <Menu /> </Button>
             </div>
 

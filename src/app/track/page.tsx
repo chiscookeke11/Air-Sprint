@@ -15,12 +15,12 @@ const {trackItem, setInputValue, inputValue} =   usePackageContext()
 
 
   return (
-    <div className="h-screen flex flex-col gap-10 items-center justify-center p-4">
+    <div className="h-screen flex flex-col gap-10 items-center pt-[5%] p-4">
 <div className=" w-full flex items-center justify-center gap-2 flex-col" >
         <h2 className="text-[#16A7FC] text-2xl md:text-[31.25px] leading-[100%] font-bold font-oxanium " >Track your package</h2>
       <h1 className="text-[#11111D] font-extrabold text-3xl md:text-[39px] leading-[100%] font-raleway ">Please enter your tracking ID </h1>
 </div>
-  <div className="flex gap-[2px] items-stretch w-full max-w-[380px] font-martel">
+  <div className="flex gap-[2px] items-stretch w-full max-w-[380px] font-martel mt-3">
         <label className="bg-[#ffffff] shadow-[0px_8px_40px_0px_#00000014] w-full max-w-[336px] rounded-[6px] flex items-center gap-2 justify-center px-2">
           <MapPin size={20} color="#C4C4C4" />
           <input

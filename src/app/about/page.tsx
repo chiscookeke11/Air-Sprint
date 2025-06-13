@@ -4,12 +4,12 @@ import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 export default function AboutUs() {
     return (
-        <div className="mt-20 font-poppins ">
+        <div className="mt-20 font-raleway ">
             <div className="bg-[#F3F5F6] px-6  py-12 ">
-                <div className="flex justify-between md:flex-row flex-col gap-12 items-center md:w-[80%] mx-auto">
+                <div className="flex justify-evenly md:flex-row flex-col gap-12 items-center md:w-[80%] mx-auto">
                     <div className="relative">
                         <Image alt="about" src='/about.png' height={100} width={100} className="md:w-[400px] w-[450px]" />
-                        <div className="bg-white p-6 w-[70%] absolute bottom-[-3%] left-40 md:left-44 flex flex-col gap-2 z-20">
+                        <div className="bg-white p-6 w-[70%] absolute bottom-[-3%] left-0 md:left-44 flex flex-col gap-2 z-20">
                             <h3 className="text-xl font-bold">Swadhin </h3>
                             <p className="text-[#6F1DF4]">CEO- Staff in Boxes </p>
                             <p className="text-[#3C3C43D9]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet, venenatis.</p>
