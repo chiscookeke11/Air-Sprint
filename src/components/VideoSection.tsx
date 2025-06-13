@@ -34,7 +34,7 @@ export default function VideoSection() {
           className="w-full h-full object-cover"
         >
           <source
-            src="https://res.cloudinary.com/dwedz2laa/video/upload/v1735702750/chrome_wxFd23u05i_sohlie.mp4"
+            src="https://res.cloudinary.com/dwedz2laa/video/upload/v1749832329/vecteezy_3d-worldwide-shipping-with-delivery-van-plane-sky-train_10185689_1_belchd.mov"
             type="video/mp4"
           />
         </video>
@@ -51,10 +51,10 @@ export default function VideoSection() {
         >
           <Play size={50} />
         </Button>
-        <h1 className="text-[#16A7FC] font-bold text-[31px] leading-[100%] font-oxanium">
+        <h1 className="text-[#16A7FC] font-bold text-2xl md:text-[31px] leading-[100%] font-oxanium">
           FASTEST DELIVERY
         </h1>
-        <p className="text-2xl font-normal text-white font-raleway max-w-[570px] text-center">
+        <p className="text-lg md:text-2xl font-normal text-white font-raleway max-w-[570px] text-center">
           You can get your valuable item in the fastest period of time with
           safety. Because your emergency is our first priority.
         </p>
