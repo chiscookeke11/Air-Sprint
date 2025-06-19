@@ -28,7 +28,6 @@ export default function VideoSection() {
           ref={videoRef}
           width="100%"
           height="100%"
-          controls
           playsInline
           muted
           className="w-full h-full object-cover"

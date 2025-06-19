@@ -230,7 +230,13 @@ export default function CourierSettingsPage() {
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex gap-2">
-                      <Button variant="outline" size="sm" className='border border-[#4E60FF] cursor-pointer '>Change</Button>
+
+                      <label htmlFor="imageUpload">
+                        <Button variant="outline" size="sm" className='border border-[#4E60FF] cursor-pointer '>Change</Button>
+                        <input type="file" placeholder='add image' id='imageUpload'  />
+
+                      </label>
+
                       <Button onClick={removeDp} variant="ghost" size="sm" className="text-red-600 hover:text-red-700 cursor-pointer">
                         Remove
                       </Button>

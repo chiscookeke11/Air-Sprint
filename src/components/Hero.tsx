@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 
 
@@ -15,7 +16,8 @@ export default function Hero() {
                 <h1 className="w-full max-w-[516px] text-3xl md:text-4xl lg:text-[49px] text-[#261134] font-extrabold leading-[100%] " >We are provide the best courier services.</h1>
                 <p className="w-full max-w-[330px] text-base " >We deliver your products safely to your home in a reasonable time.</p>
 
-                <Button className=" mt-4 md:mt-9 rounded-[5px] px-5 py-7 text-[#FFFFFF] font-bold text-xl cursor-pointer flex items-center gap-2.5 font-oxanium "  >Get started <ArrowRight size={50} />  </Button>
+
+                <Link href={"/track"} > <Button className=" mt-4 md:mt-9 rounded-[5px] px-5 py-7 text-[#FFFFFF] font-bold text-xl cursor-pointer flex items-center gap-2.5 font-oxanium "  >Get started <ArrowRight size={50} />  </Button></Link>
             </div>
 
 

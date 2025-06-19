@@ -11,8 +11,8 @@ export default function AboutUs() {
                         <Image alt="about" src='/about.png' height={100} width={100} className="md:w-[400px] w-[450px]" />
                         <div className="bg-white p-6 w-[70%] absolute bottom-[-3%] left-0 md:left-44 flex flex-col gap-2 z-20">
                             <h3 className="text-xl font-bold">Swadhin </h3>
-                            <p className="text-[#6F1DF4]">CEO- Staff in Boxes </p>
-                            <p className="text-[#3C3C43D9]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet, venenatis.</p>
+                            <p className="text-[#6F1DF4]">CEO- AirSprint </p>
+                            <p className="text-[#3C3C43D9]">Swadhin is a visionary leader committed to redefining the future of work and service delivery.</p>
                             <div className="flex items-center gap-5 justify-between">
                                 <Image alt="about" src='/signature.png' height={100} width={100} className=" " />
                                 <div className="flex items-center gap-3">
@@ -29,7 +29,9 @@ export default function AboutUs() {
 
                     <div className="md:w-[30%] flex flex-col gap-3">
                         <h2 className="text-2xl font-bold">Our CEO say</h2>
-                        <p className="text-[#3C3C43D9] text-sm">Lorem ipsum dolor sit amet consectetur adipiscing elit massa consectetur in molestie augue sed sed augue nibh et quis nibh faucibus sem non cursus lectus nibh volutpat aliquam sed est nibh adipiscing hendrerit rhoncus, sed dolor tortor pellentesque quis molestie volutpat volutpat euismod sit non sit sed.</p>
+                        <p className="text-[#3C3C43D9] text-sm">In a world that's moving faster every day, we believe in building systems that don't just keep up — they lead.
+True innovation isn't just about technology, it's about people. At Staff in Boxes, we are committed to creating solutions that are efficient, human-centered, and future-ready.
+This is more than work — it’s a mission to make every interaction count</p>
                         <div className="flex items-center gap-12 mt-4">
                             <Button type="button" size={"lg"} className="bg-[#6F1DF4] flex items-center hover:bg-[#6F1DF4]/80 rounded-full px-4 py-4 text-white">Learn more</Button>
                             <Button type="button" className="bg-white rounded-full text-black">About CEO</Button>
@@ -50,14 +52,15 @@ export default function AboutUs() {
                 <div className="flex flex-col items-center gap-3">
                     <h2 className="font-medium">Mission </h2>
                     <div className="bg-[#E5E5E5] border md:w-[70%] rounded-lg border-[#16A7FC] py-8 px-12">
-                        <p className="text-[#3C3C43D9] text-sm">Lorem ipsum dolor sit amet consectetur adipiscing elit massa consectetur in molestie augue sed sed augue nibh et quis nibh faucibus sem non cursus lectus nibh volutpat aliquam sed est nibh adipiscing hendrerit rhoncus, sed dolor tortor pellentesque quis molestie volutpat volutpat euismod sit non sit sed.</p>
+                        <p className="text-[#3C3C43D9] text-sm">Swadhin is a visionary leader committed to redefining the future of work and service delivery. With a keen eye for detail and a heart for people, he continues to inspire excellence in every corner of our organization.</p>
                     </div>
                 </div>
 
                 <div className="flex flex-col items-center  gap-3">
                     <h2 className="font-medium">Vision   </h2>
                     <div className="bg-[#E5E5E5] border md:w-[70%] rounded-lg border-[#16A7FC] py-8 px-12">
-                        <p className="text-[#3C3C43D9] text-sm">Lorem ipsum dolor sit amet consectetur adipiscing elit massa consectetur in molestie augue sed sed augue nibh et quis nibh faucibus sem non cursus lectus nibh volutpat aliquam sed est nibh adipiscing hendrerit rhoncus, sed dolor tortor pellentesque quis molestie volutpat volutpat euismod sit non sit sed.</p>
+                        <p className="text-[#3C3C43D9] text-sm">We envision a world where technology and human connection go hand in hand.
+A world where services are not only smart but also deeply empathetic — making lives better, businesses stronger, and communities more connected.</p>
                     </div>
                 </div>
 

@@ -3,7 +3,7 @@ import { TestimonialProp } from "@/types/TestimonialCardType";
 export const testimonials: TestimonialProp[] = [
   {
     title: "Reliable & Fast!",
-    user: "Amara Okeke",
+    user: "Jim Quang",
     userPosition: "Operations Manager, Zen Logistics",
     userImg: "/user-1.jpg",
     content:

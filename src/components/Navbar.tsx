@@ -8,6 +8,7 @@ import { Menu, XIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useUser } from "@civic/auth/react";
 import ProfileDropdown from "./ProfileDropdown";
+import toast from "react-hot-toast";
 
 
 
@@ -84,6 +85,8 @@ export default function Navbar() {
 
 
 
+
+
     return (
         <nav className="mt-[2%] mx-auto w-full max-w-[98%] bg-[#FFFFFFB2] shadow-[0px_0px_20px_0px_#0000000D] py-3 px-[4%] flex items-center justify-between gap-5  " >
 
@@ -92,9 +95,22 @@ export default function Navbar() {
 
 
             <ul className="lg:flex items-center gap-8 font-poppins hidden  " >
-                {navLinks.map((navLink, index) => (
-                    <Link key={index} href={navLink.path} >  <li className="text-lg font-medium text-[#000000] cursor-pointer relative before:absolute before:bottom-0 before:left-0 before:w-0 hover:before:w-full before:h-[2px] before:bg-[#4E60FF] before:duration-300 before:ease-in-out before:transition-all " > {navLink.label} </li></Link>
-                ))}
+                {navLinks.map((navLink, index) => {
+
+
+                    const notifyUser = () => {
+                        if (!user && navLink.path === '/track') {
+                            toast.error("Please login to be able to track your package")
+                        }
+                        else return
+                    }
+
+
+
+                    return (
+                        <Link key={index} href={navLink.path}   >  <li onClick={ notifyUser} className="text-lg font-medium text-[#000000] cursor-pointer relative before:absolute before:bottom-0 before:left-0 before:w-0 hover:before:w-full before:h-[2px] before:bg-[#4E60FF] before:duration-300 before:ease-in-out before:transition-all " > {navLink.label} </li></Link>
+                    )
+                })}
             </ul>
 
 

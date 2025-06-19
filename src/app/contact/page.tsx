@@ -122,7 +122,7 @@ export default function ContactForm() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className=" bg-white font-poppins hover:bg-gray-100 text-black w-fit font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-0"
+              className=" bg-white font-poppins cursor-pointer hover:bg-gray-100 text-black w-fit font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-0"
             >
               {isSubmitting ? (
                 <>
