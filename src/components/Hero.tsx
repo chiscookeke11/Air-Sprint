@@ -21,13 +21,13 @@ export default function Hero() {
 
 
         if (!user) {
-            signIn()
+            await signIn()
 
 
-            if (user) {
-                router.push("/track")
-            }
-            else return
+            if (user) router.push("/track");
+
+
+            else return;
         }
         else {
             router.push("/track")
