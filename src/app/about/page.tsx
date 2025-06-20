@@ -29,9 +29,9 @@ export default function AboutUs() {
 
                     <div className="md:w-[30%] flex flex-col gap-3">
                         <h2 className="text-2xl font-bold">Our CEO say</h2>
-                        <p className="text-[#3C3C43D9] text-sm">In a world that's moving faster every day, we believe in building systems that don't just keep up — they lead.
-True innovation isn't just about technology, it's about people. At Staff in Boxes, we are committed to creating solutions that are efficient, human-centered, and future-ready.
-This is more than work — it’s a mission to make every interaction count</p>
+                        <p className="text-[#3C3C43D9] text-sm">In a world that&apos;s moving faster every day, we believe in building systems that don&apos;t just keep up — they lead.
+True innovation isn&apos;t just about technology, it&apos;s about people. At Staff in Boxes, we are committed to creating solutions that are efficient, human-centered, and future-ready.
+This is more than work — it&apos;s a mission to make every interaction count</p>
                         <div className="flex items-center gap-12 mt-4">
                             <Button type="button" size={"lg"} className="bg-[#6F1DF4] flex items-center hover:bg-[#6F1DF4]/80 rounded-full px-4 py-4 text-white">Learn more</Button>
                             <Button type="button" className="bg-white rounded-full text-black">About CEO</Button>
