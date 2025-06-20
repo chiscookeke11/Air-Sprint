@@ -21,12 +21,14 @@ import { supabase } from '@/lib/supabaseClient';
 import { UserProfileType } from '@/types/UserProfileType';
 import toast from 'react-hot-toast';
 import Spinner from '@/components/Spinner';
+import { useRouter } from 'next/navigation';
 
 
 
 export default function CourierSettingsPage() {
   const [, setActiveTab] = useState('Account');
   const { signOut, user } = useUser()
+  const router =  useRouter()
   const [userDetails, setUserDetails] = useState<UserProfileType | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [formData, setFormData] = useState<UserProfileType>({
@@ -160,6 +162,17 @@ export default function CourierSettingsPage() {
       toast.success("Profile Picture removed successfully")
     }
   };
+
+
+
+
+  useEffect(() => {
+    if (!user) {
+router.push("/")
+    }
+    else return
+  }, [user])
+
 
 
 

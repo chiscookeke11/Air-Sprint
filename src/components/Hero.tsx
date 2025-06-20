@@ -1,13 +1,41 @@
+"use client"
+
+
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import Image from "next/image";
-import Link from "next/link";
+import { useUser } from "@civic/auth/react";
+import { useRouter } from "next/navigation";
 
 
 
 
 
 export default function Hero() {
+
+    const router = useRouter()
+    const { signIn, user } = useUser()
+
+
+    const getStarted = async () => {
+
+
+        if (!user) {
+            signIn()
+
+
+            if (user) {
+                router.push("/track")
+            }
+            else return
+        }
+        else {
+            router.push("/track")
+        }
+
+    }
+
+
     return (
         <div className=" w-full max-w-[84%] min-w-[340px] mx-auto min-h-[65vh] flex flex-col md:flex-row items-center justify-between gap-5 px-2 py-16 md:py-10 md:p-1 font-raleway " >
 
@@ -17,7 +45,7 @@ export default function Hero() {
                 <p className="w-full max-w-[330px] text-base " >We deliver your products safely to your home in a reasonable time.</p>
 
 
-                <Link href={"/track"} > <Button className=" mt-4 md:mt-9 rounded-[5px] px-5 py-7 text-[#FFFFFF] font-bold text-xl cursor-pointer flex items-center gap-2.5 font-oxanium "  >Get started <ArrowRight size={50} />  </Button></Link>
+                <Button onClick={getStarted} className=" mt-4 md:mt-9 rounded-[5px] px-5 py-7 text-[#FFFFFF] font-bold text-xl cursor-pointer flex items-center gap-2.5 font-oxanium "  >Get started <ArrowRight size={50} />  </Button>
             </div>
 
 
