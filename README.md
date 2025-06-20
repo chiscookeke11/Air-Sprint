@@ -330,8 +330,8 @@ const trackPackage = async (trackingId: string) => {
 
 For questions about this project or implementation details:
 
-- **Project Repository:** [Your GitHub Repository URL]
-- **Live Demo:** [Your Deployment URL]
+- **Project Repository:** https://github.com/chiscookeke11/Air-Sprint
+- **Live Demo:** https://air-sprint.vercel.app/
 - **Documentation:** This document serves as comprehensive project documentation
 - **Contact:** Available through the application's contact form
 
