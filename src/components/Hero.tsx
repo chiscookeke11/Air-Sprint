@@ -73,7 +73,7 @@ export default function Hero() {
             <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 }}
+                transition={{ duration: 0.3, ease: "easeOut", delay: 0.4 }}
                 className=" w-full max-w-[457px] h-full  flex items-center justify-center overflow-hidden  " >
                 <Image src={"/Hero-section.svg"} alt="hero-img" width={10} height={10} className=" w-full h-full " />
 
