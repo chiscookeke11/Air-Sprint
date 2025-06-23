@@ -14,8 +14,8 @@ export default function AboutUs() {
                             <p className="text-[#6F1DF4]">CEO- AirSprint </p>
                             <p className="text-[#3C3C43D9]">Swadhin is a visionary leader committed to redefining the future of work and service delivery.</p>
                             <div className="flex items-center gap-5 justify-between">
-                                <Image alt="about" src='/signature.png' height={100} width={100} className=" " />
-                                <div className="flex items-center gap-3">
+                                <Image alt="about" src='/signature.png' height={80} width={80} className=" " />
+                                <div className="flex items-center gap-3  ">
                                     <Link href='/ ' ><Facebook size={20} className="text-[#B2B2B4] hover:text-black " /> </Link>
                                     <Link href='/ ' > <Twitter size={20} className="text-[#B2B2B4] hover:text-black" /> </Link>
                                     <Link href='/ ' ><Instagram size={20} className="text-[#B2B2B4] hover:text-black" /> </Link>
