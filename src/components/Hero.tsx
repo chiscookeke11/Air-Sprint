@@ -45,7 +45,7 @@ export default function Hero() {
 
 
     return (
-        <div className=" w-full max-w-[84%] min-w-[340px] mx-auto min-h-[65vh] flex flex-col md:flex-row items-center justify-between gap-5 px-2 py-16 md:py-10 md:p-1 font-raleway " >
+        <div className=" w-full max-w-[84%] min-w-[340px] mx-auto min-h-[75vh] flex flex-col md:flex-row items-center justify-between gap-5 px-2 py-16 md:py-10 md:p-1 font-raleway " >
 
 
             <div className="flex flex-col gap-2 items-start overflow-hidden"  >

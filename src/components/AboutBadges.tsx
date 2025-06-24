@@ -1,5 +1,8 @@
-import Image from "next/image"
+"use client"
 
+
+import Image from "next/image"
+import { motion } from "framer-motion";
 
 
 
@@ -22,24 +25,27 @@ const badges = [
 
 export default function AboutBadges() {
     return (
-        <section className="bg-[#FFFFFF] w-full max-w-[90%] mx-auto flex items-center justify-evenly gap-5 py-10 px-3 md:px-10 mt-7 shadow-[0px_8px_40px_0px_#00000014] font-poppins   " >
+        <section className="bg-[#FFFFFF] w-full max-w-[90%] mx-auto flex items-center justify-evenly gap-5 py-10 px-3 md:px-10 mt-7 shadow-[0px_8px_40px_0px_#00000014] font-poppins overflow-hidden   " >
 
 
 
             {badges.map((badge, index) => (
-                <div key={index} className=" w-full max-w-[370px] flex flex-col md:flex-row items-center md:items-start  justify-start gap-3 p-1 " >
+                <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{  scale: 1 }}
+                    transition={{ duration: 0.2, delay: index * 0.2 }}
+                    viewport={{ once: true, amount: 0.6 }}
+                    key={index} className=" w-full max-w-[370px] flex flex-col md:flex-row items-center md:items-start  justify-start gap-3 p-1 " >
                     <Image src={badge.img} alt="icon" width={20} height={20} className="w-6 h-6  lg:w-12 lg:h-12 " />
                     <h5 className="text-[#3F4255] text-xs md:text-sm lg:text-base font-light text-center " >{badge.desc} </h5>
 
-                </div>
+                </motion.div>
 
             ))}
 
 
 
-            <div>
 
-            </div>
         </section>
     )
 }
