@@ -1,5 +1,9 @@
+"use client"
+
+
 import Image from "next/image"
 import { Button } from "./ui/button"
+import { motion } from "framer-motion";
 
 
 
@@ -41,7 +45,13 @@ export default function Services() {
 
 
                 {servicesDetails.map((card, index) => (
-                    <div key={index} className="basis-1/3 max-w-[320px] md:max-w-[424px] flex flex-col items-center rounded-2xl py-10 px-[4%] gap-4 md:gap-6  bg-[#FFFFFF] border-[1px] border-[#FFFFFF] shadow-[0px_0px_20px_5px_#3F3D560D] " >
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        transition={{ duration: 0.2, delay: index * 0.2 }}
+                        viewport={{ once: true, amount: 0.5 }}
+                        key={index}
+                        className="basis-1/3 max-w-[320px] md:max-w-[424px] flex flex-col items-center rounded-2xl py-10 px-[4%] gap-4 md:gap-6  bg-[#FFFFFF] border-[1px] border-[#FFFFFF] shadow-[0px_0px_20px_5px_#3F3D560D] " >
 
                         <Image src={card.icon} alt={card.title} height={10} width={10} className=" w-[40px] h-[40px] lg:w-[70px] lg:h-[86px] " />
                         <h2 className="text-[#464558] text-xl lg:text-[25px] font-extrabold " >{card.title} </h2>
@@ -56,7 +66,7 @@ export default function Services() {
                         <Button variant={"outline"} className="cursor-pointer w-full rounded-[5px] mt-10 py-3 px-5 text-lg md:text-xl font-bold border-[#2F80ED] border-[1px] font-oxanium hover:bg-[#2F80ED] hover:text-white " >Learn more</Button>
 
 
-                    </div>
+                    </motion.div>
                 ))}
 
             </div>
