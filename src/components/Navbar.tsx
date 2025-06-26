@@ -98,17 +98,28 @@ export default function Navbar() {
                 {navLinks.map((navLink, index) => {
 
 
-                    const notifyUser = () => {
-                        if (!user && navLink.path === '/track') {
+                    const notifyUser = (path: string) => {
+                        if (!user && path === '/track') {
                             toast.error("Please login to be able to track your package")
+                            return false
                         }
-                        else return
+                        else return true
                     }
 
 
 
                     return (
-                        <Link key={index} href={navLink.path}   >  <li onClick={ notifyUser} className="text-lg font-medium text-[#000000] cursor-pointer relative before:absolute before:bottom-0 before:left-0 before:w-0 hover:before:w-full before:h-[2px] before:bg-[#4E60FF] before:duration-300 before:ease-in-out before:transition-all " > {navLink.label} </li></Link>
+
+                        <li key={index} onClick={(e) => {
+                            const canNavigate = notifyUser(navLink.path)
+                            if (!canNavigate) {
+                                e.preventDefault()
+                                return;
+                            }
+
+                        }} className="text-lg font-medium text-[#000000] cursor-pointer relative before:absolute before:bottom-0 before:left-0 before:w-0 hover:before:w-full before:h-[2px] before:bg-[#4E60FF] before:duration-300 before:ease-in-out before:transition-all " >
+                            <Link href={navLink.path}   >
+                                {navLink.label} </Link></li>
                     )
                 })}
             </ul>
@@ -134,9 +145,34 @@ export default function Navbar() {
 
 
                 <ul className=" w-full h-full flex flex-col  items-start gap-5   " >
-                    {navLinks.map((navLink, index) => (
-                        <Link onClick={() => setShowMobileNav(false)} key={index} href={navLink.path} >  <li className="text-lg font-medium text-[#000000] cursor-pointer relative  " > {navLink.label} </li></Link>
-                    ))}
+                    {navLinks.map((navLink, index) => {
+
+
+                        const notifyUser = (path: string) => {
+                            if (!user && path === '/track') {
+                                toast.error("Please login to be able to track your package");
+                                return false;
+                            }
+                            else return true;
+                        }
+
+                        return (
+
+                            <li
+                                key={index}
+                                onClick={
+                                    (e) => {
+                                        const canNavigate = notifyUser(navLink.path);
+                                        if (!canNavigate) {
+                                            e.preventDefault();
+                                            return;
+                                        }
+                                        setShowMobileNav(false)
+                                    }
+                                }
+                                className="text-lg font-medium text-[#000000] cursor-pointer relative  " >   <Link href={navLink.path} > {navLink.label}</Link> </li>
+                        )
+                    })}
 
                 </ul>
 
