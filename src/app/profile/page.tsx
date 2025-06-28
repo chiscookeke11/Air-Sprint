@@ -28,16 +28,18 @@ import { useRouter } from 'next/navigation';
 export default function CourierSettingsPage() {
   const [, setActiveTab] = useState('Account');
   const { signOut, user } = useUser()
-  const router =  useRouter()
+  const router = useRouter()
   const [userDetails, setUserDetails] = useState<UserProfileType | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [formData, setFormData] = useState<UserProfileType>({
     first_name: '',
     last_name: '',
     email: '',
     phone_number: '',
     user_id: user?.id,
-    profile_img: "/chnied.svg"
+    profile_img: ""
   });
 
   const [notifications, setNotifications] = useState({
@@ -62,7 +64,39 @@ export default function CourierSettingsPage() {
 
 
 
+
+
   const saveChanges = async (formData: UserProfileType) => {
+
+    setLoading(true)
+
+
+    let imageUrl = "";
+
+    if (imageFile) {
+      const fileExt = imageFile.name.split(".").pop();
+      const fileName = `${Date.now()}.${fileExt}`;
+
+
+
+      const { error: uploadError } = await supabase.storage
+        .from("users-profile-img").upload(fileName, imageFile)
+
+      if (uploadError) {
+        console.error("Image upload error", uploadError)
+        toast.error("Image upload failed!")
+        return;
+      }
+
+
+      const { data } = supabase.storage.from("users-profile-img")
+        .getPublicUrl(fileName);
+      imageUrl = data.publicUrl;
+    }
+
+
+
+
 
     const isValid =
       (formData?.first_name?.trim().length ?? 0) > 0 &&
@@ -72,11 +106,12 @@ export default function CourierSettingsPage() {
 
     if (!isValid) {
       toast.error("Please fill in all required fields.");
+      return
     }
 
 
 
-    setLoading(true)
+
 
     const { error } = await supabase
       .from("User_data")
@@ -87,7 +122,7 @@ export default function CourierSettingsPage() {
           last_name: formData.last_name,
           email: formData.email,
           phone_number: formData.phone_number,
-          profile_img: formData.profile_img
+          profile_img: imageUrl || formData.profile_img
         }
       ], {
         onConflict: 'user_id',
@@ -99,6 +134,7 @@ export default function CourierSettingsPage() {
     else {
       setLoading(false)
       toast.success("Profile update Successfully")
+      setImageFile(null)
     }
   }
 
@@ -148,30 +184,52 @@ export default function CourierSettingsPage() {
     })
   }
 
-  const removeDp = async () => {
-    const { error } = await supabase
-      .from("User_data")
-      .update({ profile_img: null })
-      .eq("user_id", user?.id);
+const removeDp = async () => {
+  const { error } = await supabase
+    .from("User_data")
+    .update({ profile_img: null })
+    .eq("user_id", user?.id);
 
-    if (error) {
-      console.error("Error removing profile image:", error);
-      toast.error("Error deleting Profile image")
-    }
-    else{
-      toast.success("Profile Picture removed successfully")
-    }
-  };
+  if (error) {
+    console.error("Error removing profile image:", error);
+    toast.error("Error deleting Profile image");
+  } else {
+    toast.success("Profile Picture removed successfully");
+
+    setFormData({
+      ...formData,
+      profile_img: ""
+    });
+
+    setUserDetails((prev) =>
+      prev ? { ...prev, profile_img: "" } : null
+    );
+  }
+};
+
 
 
 
 
   useEffect(() => {
     if (!user) {
-router.push("/")
+      router.push("/")
     }
     else return
   }, [user])
+
+
+  useEffect(() => {
+  if (imageFile) {
+    const objectUrl = URL.createObjectURL(imageFile);
+    setPreviewUrl(objectUrl);
+
+    // Clean up memory
+    return () => URL.revokeObjectURL(objectUrl);
+  } else {
+    setPreviewUrl(null);
+  }
+}, [imageFile]);
 
 
 
@@ -233,7 +291,7 @@ router.push("/")
                   <Label className="text-sm font-medium text-gray-700 w-16">Avatar</Label>
                   <div className="flex items-center gap-3">
                     <Avatar className="w-16 h-16 rounded-2xl">
-                      <AvatarImage src="/img.png" alt="Profile" />
+                     <AvatarImage src={previewUrl || userDetails?.profile_img || "/fallback-avatar.png"} alt="Profile" />
                       <AvatarFallback className="bg-blue-100 text-blue-600 text-lg font-semibold">
                         {userDetails?.first_name && userDetails?.last_name
                           ? `${userDetails.first_name.charAt(0).toUpperCase()}${userDetails.last_name.charAt(0).toUpperCase()}`
@@ -244,9 +302,19 @@ router.push("/")
                     </Avatar>
                     <div className="flex gap-2">
 
-                      <label htmlFor="imageUpload">
-                        <Button variant="outline" size="sm" className='border border-[#4E60FF] cursor-pointer '>Change</Button>
-                        <input type="file" placeholder='add image' id='imageUpload'  />
+                      <label htmlFor="imageFile" className='cursor-pointer'>
+                        Change
+                        <input
+                          type="file"
+                          id='imageFile'
+                          accept='image/*'
+                          className='hidden'
+                          onChange={(e) => {
+                            if (e.target.files && e.target.files[0]) {
+                              setImageFile(e.target.files[0])
+                            }
+                          }}
+                        />
 
                       </label>
 
@@ -366,7 +434,7 @@ router.push("/")
             </Card>
 
             {/* Action Buttons */}
-            <div className="flex items-center  flex-wrap justify-between p-4 border border-t">
+            <div className="flex items-center  flex-wrap justify-between p-4 gap-3 border border-t">
               <Button onClick={() => signOut()} variant="outline" className="text-red-600 border-red-300 hover:bg-red-50 cursor-pointer">
                 Log out
               </Button>
@@ -381,7 +449,7 @@ router.push("/")
                   Discard changes
                 </Button>
                 <div>
-                  <Button onClick={() => saveChanges(formData)} className="bg-[#4E60FF] hover:bg-[#4E60FF]/90 cursor-pointer">
+                  <Button   disabled={loading} onClick={() => saveChanges(formData)} className="bg-[#4E60FF] hover:bg-[#4E60FF]/90 cursor-pointer">
                     {loading ? <Spinner /> : "Save changes"}
                   </Button>
                 </div>

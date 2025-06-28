@@ -7,5 +7,5 @@ export interface UserProfileType{
   email: string | null
   phone_number: string | null
   user_id: string | undefined
-  profile_img: string | null
+  profile_img?: string |  Blob
 }
