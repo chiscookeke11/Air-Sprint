@@ -10,6 +10,8 @@ import { MapPin } from "lucide-react";
 import { notFound } from "next/navigation";
 import toast from "react-hot-toast";
 import { PackageDataProp } from "@/types/packageData";
+import Image from "next/image";
+import ImagePreview from "@/components/ImagePreview";
 
 export default function Page(paramsPromise: { params: Promise<{ id: string }> }) {
   const { user } = useUser();
@@ -17,10 +19,18 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
   const params = use(paramsPromise.params)
   const [currentPackage, setCurrentPackage] = useState<PackageDataProp | null>(null);
   const [loading, setLoading] = useState(true);
+  const [previewUrl, setPreviewUrl] = useState("")
+  const [showPreview, setShowPreview] = useState(false)
+
+
+  useEffect(() => {
+    document.body.style.overflowY = showPreview ? "hidden" : "auto"
+  }, [showPreview])
 
   useEffect(() => {
     const fetchPackage = async () => {
       if (!user) return;
+
 
       const { data, error } = await supabase
         .from("Deliveries")
@@ -61,50 +71,52 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
 
 
 
+
+
   const packageDetails = [
-  {
-    label: "Package Tracking ID:",
-    value: currentPackage.tracking_id,
-  },
-  {
-    label: "Registered On:",
-    value: new Date(currentPackage.created_at).toLocaleDateString(),
-  },
-  {
-    label: "Current Status:",
-    value: currentPackage.status,
-  },
-  {
-    label: "Recipient Name:",
-    value: currentPackage.recipient_name,
-  },
-  {
-    label: "Recipient Address:",
-    value: currentPackage.recipient_address,
-  },
-  {
-    label: "Recipient Email:",
-    value: currentPackage.recipient_email,
-  },
-  {
-    label: "Recipient Phone Number:",
-    value: currentPackage.recipient_number,
-  },
-  {
-    label: "Sender Name:",
-    value: currentPackage.sender_name,
-  },
-  {
-    label: "Sender Email:",
-    value: currentPackage.sender_email,
-  },
-  {
-    label: "Sender Phone Number:",
-    value: currentPackage.sender_number,
-  }
-];
+    {
+      label: "Package Tracking ID:",
+      value: currentPackage.tracking_id,
+    },
+    {
+      label: "Registered On:",
+      value: new Date(currentPackage.created_at).toLocaleDateString(),
+    },
+    {
+      label: "Current Status:",
+      value: currentPackage.status,
+    },
+    {
+      label: "Recipient Name:",
+      value: currentPackage.recipient_name,
+    },
+    {
+      label: "Recipient Address:",
+      value: currentPackage.recipient_address,
+    },
+    {
+      label: "Recipient Email:",
+      value: currentPackage.recipient_email,
+    },
+    {
+      label: "Recipient Phone Number:",
+      value: currentPackage.recipient_number,
+    },
+    {
+      label: "Sender Name:",
+      value: currentPackage.sender_name,
+    },
+    {
+      label: "Sender Email:",
+      value: currentPackage.sender_email,
+    },
+    {
+      label: "Sender Phone Number:",
+      value: currentPackage.sender_number,
+    }
+  ];
 
-
+  const packageImages = currentPackage?.images
 
 
 
@@ -134,7 +146,7 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
 
 
   return (
-    <div className="w-full h-fit flex  items-center  flex-col gap-8 md:gap-16 md:pt-14 p-4">
+    <div className="w-full h-fit flex  items-center  flex-col gap-8 md:gap-16 md:pt-14 p-4 relative">
       <div className="flex gap-[2px] items-stretch w-full max-w-[380px] font-martel">
         <label className="bg-[#ffffff] shadow-[0px_8px_40px_0px_#00000014] w-full max-w-[336px] rounded-[6px] flex items-center gap-2 justify-center px-2">
           <MapPin size={20} color="#C4C4C4" />
@@ -160,6 +172,16 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
         ))}
       </div>
 
+      <div className="flex items-center justify-center gap-5" >
+        {packageImages.map((image, index) => (
+          <Image onClick={() => {
+            setPreviewUrl(image)
+            setShowPreview(true)
+          }}
+            key={index} src={image} alt={`image-${index + 1}`} width={500} height={500} className="w-[200px] h-[200px] rounded-lg cursor-pointer " />
+        ))}
+      </div>
+
 
 
       <div className="w-full h-full max-w-6xl">
@@ -170,6 +192,11 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
           current_lng={currentPackage.current_lng}
         />
       </div>
+
+      {showPreview &&
+        <ImagePreview
+          setShowPreview={setShowPreview}
+          imageUrl={previewUrl} />}
     </div>
   );
 }
