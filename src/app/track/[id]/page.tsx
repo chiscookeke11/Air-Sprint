@@ -65,7 +65,7 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
   }, [params.id, user,]);
 
   if (!user) return <p className="p-6">Please log in to view this page.</p>;
-  if (loading) return <p className="p-6">Loading package info...</p>;
+  if (loading) return <p className="p-6 mx-auto ">Loading package info...</p>;
   if (!currentPackage) return notFound();
 
 
@@ -172,15 +172,18 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
         ))}
       </div>
 
-      <div className="flex items-center justify-center gap-5" >
+  <div className="  w-full max-w-3xl mx-auto flex flex-col items-start gap-5 " >
+    <h4 className=" text-lg font-medium" > Package Images</h4>
+        <div className="flex items-center justify-center gap-5" >
         {packageImages.map((image, index) => (
           <Image onClick={() => {
             setPreviewUrl(image)
             setShowPreview(true)
           }}
-            key={index} src={image} alt={`image-${index + 1}`} width={500} height={500} className="w-[200px] h-[200px] rounded-lg cursor-pointer " />
+            key={index} src={image} alt={`image-${index + 1}`} width={500} height={500} className="w-[100px] h-[100px] rounded-lg cursor-pointer " />
         ))}
       </div>
+  </div>
 
 
 
