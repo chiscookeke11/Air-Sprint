@@ -182,7 +182,7 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
 
   <div className="  w-full max-w-3xl mx-auto flex flex-col items-start gap-5 " >
     <h4 className=" text-lg font-medium" > Package Images</h4>
-        <div className="grid grid-cols-3 gap-4 place-items-center justify-items-center w-full " >
+        <div className="flex items-center gap-5 md:flex-nowrap flex-wrap w-full " >
         {packageImages.map((image, index) => (
           <Image onClick={() => {
             setPreviewUrl(image)
