@@ -102,25 +102,25 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
       label: "Recipient Email:",
       value: currentPackage.recipient_email,
     },
-    {
-      label: "Recipient Phone Number:",
-      value: currentPackage.recipient_number,
-    },
+    // {
+    //   label: "Recipient Phone Number:",
+    //   value: currentPackage.recipient_number,
+    // },
     {
       label: "Sender Name:",
       value: currentPackage.sender_name,
     },
-    {
-      label: "Sender Email:",
-      value: currentPackage.sender_email,
-    },
+    // {
+    //   label: "Sender Email:",
+    //   value: currentPackage.sender_email,
+    // },
     {
       label: "Sender Phone Number:",
       value: currentPackage.sender_number,
     },
       {
       label: "Company name:",
-      value: "Primedrop",
+      value: "Primedrop Logistics",
     }
   ];
 
