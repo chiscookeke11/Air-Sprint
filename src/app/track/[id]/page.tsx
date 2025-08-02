@@ -65,7 +65,11 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
   }, [params.id, user,]);
 
   if (!user) return <p className="p-6">Please log in to view this page.</p>;
-  if (loading) return <p className="p-6 mx-auto ">Loading package info...</p>;
+  if (loading) return (
+    <div className="w-full h-[50vh] flex items-center justify-center text-center " >
+
+    </div>
+  );
   if (!currentPackage) return notFound();
 
 
@@ -113,6 +117,10 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
     {
       label: "Sender Phone Number:",
       value: currentPackage.sender_number,
+    },
+      {
+      label: "Company name:",
+      value: "Primedrop",
     }
   ];
 
@@ -174,7 +182,7 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
 
   <div className="  w-full max-w-3xl mx-auto flex flex-col items-start gap-5 " >
     <h4 className=" text-lg font-medium" > Package Images</h4>
-        <div className="flex items-center justify-center gap-5" >
+        <div className="grid grid-cols-3 gap-4 place-items-center justify-items-center w-full " >
         {packageImages.map((image, index) => (
           <Image onClick={() => {
             setPreviewUrl(image)

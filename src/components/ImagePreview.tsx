@@ -19,3 +19,5 @@ export default function ImagePreview({ imageUrl, setShowPreview }: ImagePreviewP
         </div>
     )
 }
+
+
