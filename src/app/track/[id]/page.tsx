@@ -5,7 +5,6 @@ import { usePackageContext } from "@/components/context/PackageContext";
 import Map from "@/components/Map";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/lib/supabaseClient";
-import { useUser } from "@civic/auth/react";
 import { MapPin } from "lucide-react";
 import { notFound } from "next/navigation";
 import toast from "react-hot-toast";
@@ -14,7 +13,6 @@ import Image from "next/image";
 import ImagePreview from "@/components/ImagePreview";
 
 export default function Page(paramsPromise: { params: Promise<{ id: string }> }) {
-  const { user } = useUser();
   const { inputValue, setInputValue, trackItem } = usePackageContext();
   const params = use(paramsPromise.params);
   const [currentPackage, setCurrentPackage] = useState<PackageDataProp | null>(null);

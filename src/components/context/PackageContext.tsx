@@ -2,7 +2,6 @@
 
 import { supabase } from "@/lib/supabaseClient";
 import { PackageDataProp } from "@/types/packageData"
-import { useUser } from "@civic/auth/react";
 import { useRouter } from "next/navigation";
 import React, { createContext, useContext, useState } from "react";
 import toast from "react-hot-toast";
@@ -28,7 +27,6 @@ export const PackageProvider = ({ children }: { children: React.ReactNode }) => 
     const [deliveryData, setDeliveryData] = useState<PackageDataProp[]>([])
     const [loading] = useState(true);
     const [inputValue, setInputValue] = useState<string>("")
-    const { user } = useUser()
     const router = useRouter()
 
 
