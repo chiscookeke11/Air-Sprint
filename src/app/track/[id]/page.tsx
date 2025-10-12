@@ -102,10 +102,10 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
       label: "Recipient Email:",
       value: currentPackage.recipient_email,
     },
-    // {
-    //   label: "Recipient Phone Number:",
-    //   value: currentPackage.recipient_number,
-    // },
+    {
+      label: "Recipient Phone Number:",
+      value: currentPackage.recipient_number,
+    },
     {
       label: "Sender Name:",
       value: currentPackage.sender_name,
@@ -114,14 +114,14 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
     //   label: "Sender Email:",
     //   value: currentPackage.sender_email,
     // },
-    {
-      label: "Sender Phone Number:",
-      value: currentPackage.sender_number,
-    },
-      {
-      label: "Company name:",
-      value: "Primedrop Logistics",
-    }
+    // {
+    //   label: "Sender Phone Number:",
+    //   value: currentPackage.sender_number,
+    // }
+    //   {
+    //   label: "Company name:",
+    //   value: "Primedrop Logistics",
+    // }
   ];
 
   const packageImages = currentPackage?.images
@@ -183,7 +183,7 @@ export default function Page(paramsPromise: { params: Promise<{ id: string }> })
   <div className="  w-full max-w-3xl mx-auto flex flex-col items-start gap-5 " >
     <h4 className=" text-lg font-medium" > Package Images</h4>
         <div className="flex items-center gap-5 md:flex-nowrap flex-wrap w-full " >
-        {packageImages.map((image, index) => (
+        {packageImages?.map((image, index) => (
           <Image onClick={() => {
             setPreviewUrl(image)
             setShowPreview(true)

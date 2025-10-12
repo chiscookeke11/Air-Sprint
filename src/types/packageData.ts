@@ -19,5 +19,5 @@ export interface PackageDataProp {
   recipient_number: string;
   sender_number: string;
   recipient_address: string;
-  images: string[]
+  images: string[] | null
 }
