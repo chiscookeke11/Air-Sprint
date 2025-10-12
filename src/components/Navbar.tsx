@@ -99,7 +99,7 @@ export default function Navbar() {
 
 
                     const notifyUser = (path: string) => {
-                        if (!user && path === '/track') {
+                        if (!user && path === '/t') {
                             toast.error("Please login to be able to track your package")
                             return false
                         }

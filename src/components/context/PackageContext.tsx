@@ -33,95 +33,58 @@ export const PackageProvider = ({ children }: { children: React.ReactNode }) => 
 
 
 
-    const trackItem = async () => {
-        const trimmedInput = inputValue.trim();
+const trackItem = async () => {
+  const trimmedInput = inputValue.trim();
 
+  if (trimmedInput.length === 0) {
+    toast("Please enter your tracking ID", {
+      icon: "ℹ️",
+      style: { background: "#3B82F6", color: "#fff" },
+    });
+    return;
+  }
 
+  if (trimmedInput.length !== 7) {
+    toast.error("Tracking ID must be exactly 7 characters");
+    return;
+  }
 
-        if (!user) {
-            toast.error("Please log in to track your package");
-            return;
-        }
+  const loadingToast = toast.loading("Tracking your package...");
 
-        if (trimmedInput.length === 0) {
-            toast("Please enter your tracking ID", {
-                icon: 'ℹ️',
-                style: {
-                    background: '#3B82F6',
-                    color: '#fff',
-                },
-            });
-            return;
-        }
+  try {
+    // ✅ Fetch package based solely on tracking ID
+    const { data, error } = await supabase
+      .from("Deliveries")
+      .select("*")
+      .eq("tracking_id", trimmedInput);
 
-        if (trimmedInput.length !== 7) {
-            toast.error("Tracking ID must be exactly 7 characters");
-            return;
-        }
-
-        const loadingToast = toast.loading("Tracking your package...")
-
-
-        try {
-            const { data, error } = await supabase.from("Deliveries").select("*").eq("tracking_id", trimmedInput)
-
-
-            if (error) {
-                toast.dismiss(loadingToast)
-                console.error("Error fecthing data", error)
-                toast.error(`Error fetching your package: ${error.message}`)
-                return
-            }
-            if (!data || data.length === 0) {
-                toast.dismiss(loadingToast)
-                toast.error("Package not found. Please check your tracking ID.")
-                console.log("No packages found with tracking ID:", trimmedInput)
-                return
-            }
-
-
-
-
-
-
-            // checking permissions
-
-            const userEmail = user.email
-            const userUID = user.id
-            const packageData = data[0]
-
-            const hasPermission =
-                packageData.sender_email === userEmail ||
-                packageData.recipient_email === userEmail ||
-                packageData.sender_uid === userUID ||
-                packageData.recipient_uid === userUID
-
-
-            if (!hasPermission) {
-                toast.dismiss(loadingToast)
-                toast.error("You don't have permission to track this package")
-                return
-            }
-
-            setDeliveryData(data)
-            toast.success("Package found!")
-            router.push(`/track/${trimmedInput}`)
-            toast.dismiss(loadingToast)
-        }
-
-        catch (err: unknown) {
-            toast.dismiss(loadingToast);
-            console.error("Unexpected error during package tracking:", err);
-
-            const errorMessage = err instanceof Error ? err.message : "Unknown error occurred";
-            toast.error(`An unexpected error occurred: ${errorMessage}`);
-        }
-
-
-
-        setInputValue("")
+    if (error) {
+      console.error("Error fetching data:", error);
+      toast.dismiss(loadingToast);
+      toast.error(`Error fetching your package: ${error.message}`);
+      return;
     }
 
+    if (!data || data.length === 0) {
+      toast.dismiss(loadingToast);
+      toast.error("Package not found. Please check your tracking ID.");
+      return;
+    }
+
+    // ✅ Package found — navigate to details page
+    setDeliveryData(data);
+    toast.dismiss(loadingToast);
+    toast.success("Package found!");
+    router.push(`/track/${trimmedInput}`); // 👈 this triggers the details page
+  } catch (err: unknown) {
+    toast.dismiss(loadingToast);
+    console.error("Unexpected error during package tracking:", err);
+    const errorMessage = err instanceof Error ? err.message : "Unknown error occurred";
+    toast.error(`An unexpected error occurred: ${errorMessage}`);
+  } finally {
+    setInputValue("");
+  }
+};
 
 
 

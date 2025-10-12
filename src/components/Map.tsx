@@ -20,7 +20,7 @@ export default function Map({destination_lat, destination_lng, current_lat, curr
     const mapContainer = useRef<HTMLDivElement | null>(null);
     const map = useRef<maptilersdk.Map | null>(null);
     const location = { lng: current_lng, lat: current_lat };
-    const zoom = 1;
+    const zoom = 3;
 
     maptilersdk.config.apiKey = process.env.NEXT_PUBLIC_MAP_API_KEY || "";
 

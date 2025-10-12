@@ -4,8 +4,6 @@ export default authMiddleware();
 
 export const config = {
   matcher: [
-
-    "/track/:path*",
     "/profile/:path*"
   ],
 };
